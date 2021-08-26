@@ -1,5 +1,7 @@
 package crud.control;
 
+import crud.model.User;
+import crud.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,12 +12,16 @@ import java.util.List;
 @Controller
 public class HelloController {
 
+	private final UserService service;
+
+	public HelloController(UserService service) {
+		this.service = service;
+	}
+
 	@GetMapping(value = "/")
 	public String printWelcome(ModelMap model) {
-		List<String> messages = new ArrayList<>();
-		messages.add("Hello!");
-		messages.add("I'm Spring MVC application");
-		messages.add("5.2.0 version by sep'19 ");
+		service.add(new User("al", "bar", 22));
+		List<User> messages = service.listUsers();
 		model.addAttribute("messages", messages);
 		return "index";
 	}
