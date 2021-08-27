@@ -53,8 +53,8 @@ public class UserConroller {
     }
 
     @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user, @PathVariable("id") Long id){
-        service.update(id,user);
+    public String update(@ModelAttribute("user") User user){
+        service.update(user);
         return "redirect:/users";
     }
 
