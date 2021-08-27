@@ -2,37 +2,47 @@ package crud.DAO;
 
 
 import crud.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManagerFactory;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.List;
 
 @Repository
 public class UserDaoImp implements UserDao {
 
-//   @Autowired
-//   private SessionFactory sessionFactory;
 
-//   @Qualifier("entityManagerFactory")
-   @Autowired
-   private EntityManagerFactory managerFactory;
+   @PersistenceContext
+   private EntityManager entityManager;
 
    @Override
    public void add(User user) {
-//      sessionFactory.getCurrentSession().save(user);
-      managerFactory.createEntityManager().merge(user);
+      entityManager.persist(user);
    }
 
    @Override
    public List<User> listUsers() {
-//      TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-//      return query.getResultList();
-      Query query = managerFactory.createEntityManager().createQuery("SELECT p From User p",User.class);
+      Query query = entityManager.createQuery("SELECT u From User u",User.class);
       return query.getResultList();
    }
 
+   @Override
+   public User getUserById(Long id){
+      Query query = entityManager.createQuery("Select e FROM User e WHERE e.id = :id");
+      query.setParameter("id", id);
+      return (User) query.getSingleResult();
+   }
+
+   @Override
+   public void update(Long id, User user) {
+      entityManager.merge(user);
+   }
+
+   @Override
+   public void delete(Long id) {
+      entityManager.remove(getUserById(id));
+   }
 
 
 }
