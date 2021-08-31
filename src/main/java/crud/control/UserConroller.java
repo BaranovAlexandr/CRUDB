@@ -17,10 +17,10 @@ public class UserConroller {
     @Autowired
     public UserConroller(UserService service) {
         this.service = service;
-        service.add(new User("Alexandr","Baranov", 23));
-        service.add(new User("Alisa","Grishina", 23));
-        service.add(new User("Maria","Shirokaya", 22));
-        service.add(new User("Tema","LOH", 25));
+//        service.add(new User("Alexandr","Baranov", 23));
+//        service.add(new User("Alisa","Grishina", 23));
+//        service.add(new User("Maria","Shirokaya", 22));
+//        service.add(new User("Tema","LOH", 25));
     }
 
     @GetMapping()
@@ -63,5 +63,8 @@ public class UserConroller {
         service.delete(id);
         return "redirect:/users";
     }
+
+
+
 
 }
