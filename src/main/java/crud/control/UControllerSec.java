@@ -1,7 +1,6 @@
 package crud.control;
 
-import crud.model.Role;
-import crud.model.User;
+import crud.DAO.RoleDaoImp;
 import crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,9 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Controller
 @RequestMapping("/")
@@ -24,6 +21,16 @@ public class UControllerSec {
     @Autowired
     public UControllerSec(UserService userService) {
         this.userService = userService;
+//        this.roleDAO = roleDAO;
+////        Role userR = new Role("ROLE_USER");
+////        Role adminR = new Role("ROLE_ADMIN");
+//        Role adminR = roleDAO.getRoleByName("ROLE_ADMIN");
+//
+//        Set<Role> rolesAdmin = new HashSet<>();
+//        rolesAdmin.add(adminR);
+//
+//        User user = new User("sanek","sanek", rolesAdmin, "Alexandr", "Baranov", 23 );
+//        userService.add(user);
 
 
     }

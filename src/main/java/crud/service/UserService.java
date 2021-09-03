@@ -1,8 +1,11 @@
 package crud.service;
 
 import crud.model.User;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+
 
 public interface UserService {
     void add(User user);

@@ -1,7 +1,6 @@
 package crud.service;
 
-import crud.DAO.UDAO;
-
+import crud.DAO.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -14,16 +13,16 @@ import org.springframework.transaction.annotation.Transactional;
 @Transactional
 public class UserDetailsServiceImpl implements UserDetailsService {
 
-    UDAO udao;
+    UserDao userDao;
 
     @Autowired
-    public UserDetailsServiceImpl(UDAO udao) {
-        this.udao = udao;
+    public UserDetailsServiceImpl(UserDao userDao) {
+        this.userDao = userDao;
     }
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return udao.getUserByUsername(s);
+        return userDao.getUserByUsername(s);
     }
 
 }
