@@ -3,6 +3,7 @@ package crud.DAO;
 
 import crud.model.User;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -10,6 +11,7 @@ import javax.persistence.Query;
 import java.util.List;
 
 @Repository
+@Transactional
 public class UserDaoImp implements UserDao {
 
 
@@ -44,12 +46,7 @@ public class UserDaoImp implements UserDao {
       entityManager.remove(getUserById(id));
    }
 
-   @Override
-   public User getUserByName(String username) {
-      Query query = entityManager.createQuery("Select e FROM User e WHERE e.username = :username");
-      query.setParameter("username", username);
-      return (User) query.getSingleResult();
-   }
+
 
 
 }

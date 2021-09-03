@@ -11,5 +11,5 @@ public interface UserDao {
    User getUserById(Long id);
    void update(User user);
    void delete(Long id);
-   User getUserByName(String username);
+
 }

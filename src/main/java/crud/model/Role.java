@@ -1,10 +1,12 @@
 package crud.model;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Component
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {
@@ -18,7 +20,7 @@ public class Role implements GrantedAuthority {
     @Column(name = "role")
     private String role;
 
-    @ManyToMany(mappedBy = "roles")
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<User> users;
 
 
@@ -26,7 +28,6 @@ public class Role implements GrantedAuthority {
 
     public Role(String role) {
         this.role = role;
-
     }
 
     public Long getId() {
@@ -64,6 +65,6 @@ public class Role implements GrantedAuthority {
 
     @Override
     public String getAuthority() {
-        return role;
+        return getRole();
     }
 }

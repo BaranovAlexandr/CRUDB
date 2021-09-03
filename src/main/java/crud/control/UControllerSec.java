@@ -24,6 +24,8 @@ public class UControllerSec {
     @Autowired
     public UControllerSec(UserService userService) {
         this.userService = userService;
+
+
     }
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
