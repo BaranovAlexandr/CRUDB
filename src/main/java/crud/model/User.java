@@ -30,7 +30,7 @@ public class User implements UserDetails {
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
+    private Set<Role> roles = new HashSet<>();
 
 
 
@@ -51,7 +51,7 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public User(String username, String password, Set<Role> roles, String name, String surname, int age) {
+    public User(String username, String password, String name, String surname, int age, Set<Role> roles) {
         this.username = username;
         this.password = password;
         this.name = name;

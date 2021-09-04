@@ -4,6 +4,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Component
@@ -17,11 +18,11 @@ public class Role implements GrantedAuthority {
     private Long id;
 
 
-    @Column(name = "role")
+    @Column(name = "role", unique = true)
     private String role;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    private Set<User> users;
+    private Set<User> users = new HashSet<>();
 
 
     public Role() {}

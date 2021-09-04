@@ -17,10 +17,6 @@ public class AdminController {
     @Autowired
     public AdminController(UserService service) {
         this.service = service;
-//        service.add(new User("Alexandr","Baranov", 23));
-//        service.add(new User("Alisa","Grishina", 23));
-//        service.add(new User("Maria","Shirokaya", 22));
-//        service.add(new User("Tema","LOH", 25));
     }
 
 
@@ -43,7 +39,7 @@ public class AdminController {
 
     @PostMapping()
     public String create(@ModelAttribute("user") User user){
-        service.add(user);
+        service.addFront(user);
         return "redirect:/admin";
     }
 

@@ -55,5 +55,10 @@ public class UserServiceImp implements UserService {
       return userDao.getUserByUsername(username);
    }
 
+   @Override
+   public void addFront(User user) {
+      userDao.addFront(user);
+   }
+
 
 }

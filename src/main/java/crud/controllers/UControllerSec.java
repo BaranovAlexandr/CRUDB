@@ -20,18 +20,6 @@ public class UControllerSec {
     @Autowired
     public UControllerSec(UserService userService) {
         this.userService = userService;
-//        this.roleDAO = roleDAO;
-////        Role userR = new Role("ROLE_USER");
-////        Role adminR = new Role("ROLE_ADMIN");
-//        Role adminR = roleDAO.getRoleByName("ROLE_ADMIN");
-//
-//        Set<Role> rolesAdmin = new HashSet<>();
-//        rolesAdmin.add(adminR);
-//
-//        User user = new User("sanek","sanek", rolesAdmin, "Alexandr", "Baranov", 23 );
-//        userService.add(user);
-
-
     }
 
     @RequestMapping(value = "hello", method = RequestMethod.GET)
