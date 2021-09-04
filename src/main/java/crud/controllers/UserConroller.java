@@ -21,32 +21,32 @@ public class UserConroller {
         this.service = service;
     }
 
-    @GetMapping("/{id}")
-    public String show(@PathVariable("id") Long id, ModelMap model){
-        model.addAttribute("user", service.getUserById(id));
-        return "users/show";
-    }
+//    @GetMapping("/{id}")
+//    public String show(@PathVariable("id") Long id, ModelMap model){
+//        model.addAttribute("user", service.getUserById(id));
+//        return "users/show";
+//    }
     @GetMapping("/user")
     public String showuser(ModelMap model, Principal principal){
         model.addAttribute("user", service.getUserByUsername(principal.getName()));
         return "users/show";
     }
 
-    @GetMapping("/{id}/edit")
-    public String edit(@PathVariable("id") Long id, ModelMap model){
-        model.addAttribute("user", service.getUserById(id));
+    @GetMapping("/user/edit")
+    public String edit(Principal principal, ModelMap model){
+        model.addAttribute("user", service.getUserByUsername(principal.getName()));
         return "users/edit";
     }
 
-    @PatchMapping("/{id}")
-    public String update(@ModelAttribute("user") User user){
-        service.update(user);
-        return "redirect:/users/show";
-    }
+//    @PatchMapping("/{id}")
+//    public String update(@ModelAttribute("user") User user){
+//        service.update(user);
+//        return "redirect:/users/show";
+//    }
 
-    @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id) {
-        service.delete(id);
+    @DeleteMapping("/delite")
+    public String delete(Principal principal) {
+        service.delete(service.getUserByUsername(principal.getName()).getId());
         return "redirect:/hello";
     }
 
