@@ -1,5 +1,4 @@
-package crud.control;
-
+package crud.controllers;
 
 import crud.model.User;
 import crud.service.UserService;
@@ -7,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+
+import java.security.Principal;
 
 @Controller
 @RequestMapping("/users")
@@ -17,16 +18,6 @@ public class UserConroller {
     @Autowired
     public UserConroller(UserService service) {
         this.service = service;
-//        service.add(new User("Alexandr","Baranov", 23));
-//        service.add(new User("Alisa","Grishina", 23));
-//        service.add(new User("Maria","Shirokaya", 22));
-//        service.add(new User("Tema","LOH", 25));
-    }
-
-    @GetMapping()
-    public String index(ModelMap model){
-        model.addAttribute("users", service.listUsers());
-        return "users/index";
     }
 
     @GetMapping("/{id}")
@@ -34,16 +25,10 @@ public class UserConroller {
         model.addAttribute("user", service.getUserById(id));
         return "users/show";
     }
-
-    @GetMapping("/new")
-    public String newUser(@ModelAttribute("user") User user){
-        return "users/new";
-    }
-
-    @PostMapping()
-    public String create(@ModelAttribute("user") User user){
-        service.add(user);
-        return "redirect:/users";
+    @GetMapping("/user")
+    public String showuser(ModelMap model, Principal principal){
+        model.addAttribute("user", service.getUserByUsername(principal.getName()));
+        return "users/show";
     }
 
     @GetMapping("/{id}/edit")
@@ -55,16 +40,13 @@ public class UserConroller {
     @PatchMapping("/{id}")
     public String update(@ModelAttribute("user") User user){
         service.update(user);
-        return "redirect:/users";
+        return "redirect:/users/show";
     }
 
     @DeleteMapping("/{id}")
-    public String delete(@PathVariable("id") Long id){
+    public String delete(@PathVariable("id") Long id) {
         service.delete(id);
-        return "redirect:/users";
+        return "redirect:/hello";
     }
-
-
-
 
 }

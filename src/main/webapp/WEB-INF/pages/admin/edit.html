@@ -5,7 +5,7 @@
     <title>update User</title>
 </head>
 <body>
-<form th:method="PATCH" th:action="@{/users/{id}(id=${user.getId()})}" th:object="${user}">
+<form th:method="PATCH" th:action="@{/admin/{id}(id=${user.getId()})}" th:object="${user}">
     <label>Enter name___:
         <input type="text" th:field="*{name}">
     </label>
@@ -28,6 +28,10 @@
     <br/>
     <input type="submit" value="Update!">
 </form>
+
+<br/><br/>
+<a href="/logout">logout</a>
+
 
 </body>
 </html>

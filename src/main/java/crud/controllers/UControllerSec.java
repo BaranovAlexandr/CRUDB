@@ -1,6 +1,5 @@
-package crud.control;
+package crud.controllers;
 
-import crud.DAO.RoleDaoImp;
 import crud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
