@@ -64,8 +64,13 @@ public class AdminController {
     }
 
     @PatchMapping("/{id}")
-    public String update(@PathVariable("id") Long id, @ModelAttribute("user") User user){
-        user.setRoles(userService.getUserById(id).getRoles());
+    public String update(@PathVariable("id") Long id, @ModelAttribute("user") User user,
+                         @RequestParam(value = "checkbox_roles", required = false) Long[] rolesId){
+        Set<Role> roles = new HashSet<>();
+        for (Long role : rolesId) {
+            roles.add(roleService.getRoleById(role));
+        }
+        user.setRoles(roles);
         userService.update(user);
         return "redirect:/admin";
     }

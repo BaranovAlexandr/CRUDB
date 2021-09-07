@@ -25,6 +25,14 @@
     <label> Enter password:
         <input type="text" th:field="*{password}">
     </label>
+    <label> Role_Admin
+        <input type="checkbox" th:value="1" th:name="checkbox_roles"/>
+    </label>
+    <br/>
+    <label> Role_User
+        <input type="checkbox" th:value="2" th:name="checkbox_roles" >
+    </label>
+    <br/>
     <br/>
     <input type="submit" value="Update!">
 </form>
