@@ -1,12 +1,10 @@
 package crud.DAO;
 
-
 import crud.model.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-
 
 public interface UserDao {
    void add(User user);
@@ -15,6 +13,4 @@ public interface UserDao {
    void update(User user);
    void delete(Long id);
    User getUserByUsername(String username);
-   void addFront(User user);
-
 }

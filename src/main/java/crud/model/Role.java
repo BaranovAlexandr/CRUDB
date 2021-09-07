@@ -1,13 +1,11 @@
 package crud.model;
 
 import org.springframework.security.core.GrantedAuthority;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Component
+
 @Entity
 @Table(name = "roles")
 public class Role implements GrantedAuthority {

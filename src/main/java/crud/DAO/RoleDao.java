@@ -1,9 +1,7 @@
 package crud.DAO;
 
-import crud.model.Role;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
+import crud.model.Role;
 import java.util.List;
 
 
@@ -14,4 +12,5 @@ public interface RoleDao {
     void removeRoleById(long id);
     List<Role> getAllRoles();
     Role getRoleByName(String role);
+    Role getRoleById(Long id);
 }

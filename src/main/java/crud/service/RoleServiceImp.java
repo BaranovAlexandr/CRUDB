@@ -43,4 +43,9 @@ public class RoleServiceImp implements RoleService{
     public Role getRoleByName(String role) {
         return roleDao.getRoleByName(role);
     }
+
+    @Override
+    public Role getRoleById(Long id) {
+        return roleDao.getRoleById(id);
+    }
 }

@@ -54,7 +54,7 @@ public class JPAConfig {
 
         entityManager.setJpaProperties(props);
         entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
-        entityManager.setPackagesToScan("crud.model"); // тут он вроде должен найти user
+        entityManager.setPackagesToScan("crud.model");
         return entityManager;
     }
 
@@ -64,18 +64,4 @@ public class JPAConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
-
-//    @Bean
-//    public List<User> coolUsers(){
-//        List<User> cu = new ArrayList<>();
-//        cu.add(new User("Alexandr","Baranov", 23));
-//        cu.add(new User("Alisa","Grishina", 23));
-//        cu.add(new User("Maria","Shirokaya", 22));
-//        cu.add(new User("Tema","LOH", 25));
-//        return cu;
-//    }
-
-
-
-
 }

@@ -1,12 +1,14 @@
 package crud.service;
 
 import crud.DAO.UserDao;
+import crud.model.Role;
 import crud.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 @Transactional
@@ -20,30 +22,25 @@ public class UserServiceImp implements UserService {
       this.userDao = userDao;
    }
 
-
    @Override
    public void add(User user) {
       userDao.add(user);
    }
-
 
    @Override
    public List<User> listUsers() {
       return userDao.listUsers();
    }
 
-
    @Override
    public User getUserById(Long id) {
       return userDao.getUserById(id);
    }
 
-
    @Override
    public void update(User user) {
       userDao.update(user);
    }
-
 
    @Override
    public void delete(Long id) {
@@ -56,9 +53,14 @@ public class UserServiceImp implements UserService {
    }
 
    @Override
-   public void addFront(User user) {
-      userDao.addFront(user);
+   public String[] getStringRolesByUsername(String username){
+      User user = userDao.getUserByUsername(username);
+      Set<Role> roles = user.getRoles();
+      String[] stringRoles = new String[roles.size()];
+      int i = 0;
+      for (Role role : roles) {
+         stringRoles[i++] = role.getRole();
+      }
+      return stringRoles;
    }
-
-
 }

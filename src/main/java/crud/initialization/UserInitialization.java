@@ -22,24 +22,24 @@ public class UserInitialization {
         this.roleService = roleService;
     }
 
-
     @PostConstruct
-    public void initRole() {
+    public void init() {
         roleService.addRole(new Role("ROLE_ADMIN"));
         roleService.addRole(new Role("ROLE_USER"));
 
         Set<Role> adminRoles = new HashSet<>();
         Set<Role> userRoles = new HashSet<>();
+        Set<Role> adminUserRoles = new HashSet<>();
 
-        adminRoles.add(roleService.getRoleByName("ROLE_ADMIN"));
-        userRoles.add(roleService.getRoleByName("ROLE_USER"));
-//        User user = new User("alex","alex","Alexandr","Baranov", 23, adminRoles);
-//        userService.add(user);
-        userService.add(new User("alex","alex","Alexandr","Baranov", 23, adminRoles));
+        adminRoles.add(roleService.getRoleById(1L));
+        userRoles.add(roleService.getRoleById(2L));
+        adminUserRoles.add(roleService.getRoleById(1L));
+        adminUserRoles.add(roleService.getRoleById(2L));
+
+        userService.add(new User("alex","alex","Alexandr","Baranov", 23, adminUserRoles));
         userService.add(new User("admin", "admin", "Admin", "Admin", 30, adminRoles));
         userService.add(new User("user", "user", "user", "user", 20, userRoles));
         userService.add(new User("SU","SU","SimpleUser","SimpleUser", 22, userRoles));
-
     }
 }
 

@@ -2,15 +2,12 @@ package crud.model;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-
 import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Component
 @Entity
 @Table(name = "users")
 public class User implements UserDetails {
@@ -58,6 +55,14 @@ public class User implements UserDetails {
         this.surname = surname;
         this.age = age;
         this.roles = roles;
+    }
+
+    public User(String username, String password, String name, String surname, int age) {
+        this.username = username;
+        this.password = password;
+        this.name = name;
+        this.surname = surname;
+        this.age = age;
     }
 
     public Long getId() {
